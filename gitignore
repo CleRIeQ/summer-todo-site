@@ -131,3 +131,5 @@ dmypy.json
 .vscode/
 summertodosite/media/files/user/
 summertodosite/user/media/avatar/
+summertodosite/user/__pycache__
+summertodosite/config/__pycache__
