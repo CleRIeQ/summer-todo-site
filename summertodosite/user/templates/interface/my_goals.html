@@ -1,61 +1,172 @@
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+  .pagination_rounded,
+  .pagination_square {
+    display: inline-block;
+    margin-left: 320px;
+    margin-top: 25px;
+  }
+
+  .pagination_rounded ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pagination_rounded li:first-child {
+    margin-left: 0px;
+  }
+
+  .pagination_rounded ul li {
+    float: left;
+    margin-left: 20px;
+  }
+
+  .pagination_rounded ul li a:hover {
+    background: #4285f4;
+    color: #fff;
+    border: 1px solid #4285f4;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  .pagination_rounded .prev {
+    margin-left: 0px;
+    border-radius: 35px;
+    width: 90px;
+    height: 34px;
+    line-height: 34px;
+  }
+
+
+  .pagination_rounded ul li a {
+    float: left;
+    color: #4285f4;
+    border-radius: 50%;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid #e0e0e0;
+  }
+
+  .pagination_rounded .prev i {
+    -right: 10px;
+  }
+
+  .pagination_rounded .next {
+    border-radius: 35px;
+    width: 90px;
+    height: 34px;
+    line-height: 34px;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <section class="vh-100" style="background-color: #eee;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-lg-7 col-xl-9">
-          <div class="card rounded-3">
-            <div class="card-body p-4">
-  
-              <h4 class="text-center my-3 pb-3">Summer To Do App</h4>
-  
-              <form action="" method="POST" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
-                <div class="col-12">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-7 col-xl-9">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+
+            <h4 class="text-center my-3 pb-3">Summer To Do App</h4>
+
+            <form action="" method="POST"
+              class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+              <div class="col-12">
                 <div class="form-outline">
                   {% csrf_token %}
-                  
-                  <p> <input type="text" name="title" maxlength="60" id="id_title" placeholder="Text your goal here..." class="form-control"></p>
-                  <p> <select name="priority" id="id_priority" style="margin-top:10px; margin-bottom:15px;" class="form-control"><option value="{{ form.priority }}"></option></select></p>
+
+                  <p> <input type="text" name="title" maxlength="60" id="id_title" placeholder="Text your goal here..."
+                      class="form-control"></p>
+                  <select name="priority" id="id_priority" style="margin-top:10px; margin-bottom:15px;"
+                    class="form-control">
+                    <option value="Right now" selected="">Right now</option>
+
+                    <option value="1">First</option>
+
+                    <option value="2">Second</option>
+
+                    <option value="3">Third</option>
+
+                    <option value="4">Fourth</option>
+
+                    <option value="5">Fifth</option>
+
+                    <option value="6">Sixth</option>
+
+                    <option value="7">Seventh</option>
+
+                    <option value="8">Eighth</option>
+
+                    <option value="9">Nineth</option>
+
+                    <option value="10">Tenth</option>
+
+                  </select>
 
                 </div>
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary" style="font-family: 'Noto Sans', sans-serif;">Save</button> <button type="submit" class="btn btn-warning" style="font-family: 'Noto Sans', sans-serif;">Get tasks</button>
-                </div>
-                
-              </form>
-  
-              <table class="table mb-4">
-                <thead>
-                  <tr>
-                    <th scope="col">Sq.</th>
-                    <th scope="col">Todo item</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for i in user_goals %}
-                    <tr>
-                        <th scope="row">{{ i.priority }}</th>
-                        <td>{{ i.title }}</td>
-                        <td>{{ i.status }}</td>
-                        <td>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                        <button type="submit" class="btn btn-success ms-1">Finished</button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-              </table>
-  
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary"
+                  style="font-family: 'Noto Sans', sans-serif;">Save</button>
+              </div>
+
+            </form>
+
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th scope="col">Sq.</th>
+                  <th scope="col">Todo item</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in page_obj %}
+                <tr>
+                  <th scope="row">{{ i.priority }}</th>
+                  <td>{{ i.title }}</td>
+                  <td>{{ i.status }}</td>
+                  <td>
+                    <a href="{% url 'goal-delete' pk=i.pk %}"><button type="submit" class="btn btn-danger" name="delete"
+                        value="">Delete</button></a>
+                    <a href="{% url 'goal-finish' pk=i.pk %}"><button type="submit" class="btn btn-success ms-1"
+                        name="done">Finished</button></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="pagination_rounded">
+              <ul>
+                {% for i in page_list %}
+                  <li>
+                      <a href="?page={{i}}">{{ i }}</a>
+                  </li>
+                {% endfor %} 
+              </ul>            
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  </div>
+  </div>
+</section>

@@ -22,3 +22,6 @@ class goal(models.Model):
     title = models.CharField(max_length=60, blank=True, null=False, help_text="Text your goal here...")
     priority = models.CharField(choices=sequence_choices, default='Right now', max_length=10)
     status = models.CharField(default="In progress", blank=False, max_length=20)
+
+    def get_absolute_url(self):
+        return '/my-goals/'

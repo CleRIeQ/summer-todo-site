@@ -27,7 +27,10 @@ SECRET_KEY = ''
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+ACCOUNT_FORMS = {
+    'signup': 'user.forms.SignUpForm',
+    "login": "user.forms.MyLoginForm",
+}
 
 # Application definition
 
