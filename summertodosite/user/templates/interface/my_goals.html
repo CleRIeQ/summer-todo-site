@@ -1,14 +1,107 @@
+{% load static %}
+
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="{% static 'favicon.png' %}" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
+  <title>My goals</title>
 </head>
+
 <style>
-  .pagination_rounded,
-  .pagination_square {
-    display: inline-block;
-    margin-left: 320px;
-    margin-top: 25px;
+  @media screen and (min-width: 1080px) and (max-width: 2440px) {
+
+    .pagination_rounded,
+    .pagination_square {
+      display: inline-block;
+      margin-left: 320px;
+      margin-top: 25px;
+    }
+
+    .pagination_rounded ul li {
+      float: left;
+      margin-left: 20px;
+    }
+
+    .pagination_rounded .prev {
+      margin-left: 0px;
+      border-radius: 35px;
+      width: 90px;
+      height: 34px;
+      line-height: 34px;
+    }
+
+    .pagination_rounded ul li a {
+      float: left;
+      color: #4285f4;
+      border-radius: 50%;
+      line-height: 30px;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      margin-bottom: 40px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .pagination_rounded .prev i {
+      -right: 10px;
+    }
+
+    .pagination_rounded .next {
+      border-radius: 35px;
+      width: 90px;
+      height: 34px;
+      line-height: 34px;
+    }
+
+
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1079px) {
+
+    .pagination_rounded,
+    .pagination_square {
+      display: inline-block;
+      margin-left: 320px;
+      margin-top: 25px;
+    }
+
+    .pagination_rounded ul li {
+      float: left;
+      margin-left: 20px;
+    }
+
+    .pagination_rounded .prev {
+      margin-left: 0px;
+      border-radius: 35px;
+      width: 90px;
+      height: 34px;
+      line-height: 34px;
+    }
+
+    .pagination_rounded ul li a {
+      float: left;
+      color: #4285f4;
+      border-radius: 50%;
+      line-height: 30px;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      margin-bottom: 40px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .pagination_rounded .prev i {
+      -right: 10px;
+    }
+
+    .pagination_rounded .next {
+      border-radius: 35px;
+      width: 90px;
+      height: 34px;
+      line-height: 34px;
+    }
+
   }
 
   .pagination_rounded ul {
@@ -21,10 +114,6 @@
     margin-left: 0px;
   }
 
-  .pagination_rounded ul li {
-    float: left;
-    margin-left: 20px;
-  }
 
   .pagination_rounded ul li a:hover {
     background: #4285f4;
@@ -36,38 +125,6 @@
     text-decoration: none;
   }
 
-  .pagination_rounded .prev {
-    margin-left: 0px;
-    border-radius: 35px;
-    width: 90px;
-    height: 34px;
-    line-height: 34px;
-  }
-
-
-  .pagination_rounded ul li a {
-    float: left;
-    color: #4285f4;
-    border-radius: 50%;
-    line-height: 30px;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    margin-bottom: 40px;
-    border: 1px solid #e0e0e0;
-  }
-
-  .pagination_rounded .prev i {
-    -right: 10px;
-  }
-
-  .pagination_rounded .next {
-    border-radius: 35px;
-    width: 90px;
-    height: 34px;
-    line-height: 34px;
-  }
-
   .visible-xs {
     display: none !important;
   }
@@ -76,12 +133,12 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <section class="vh-100" style="background-color: #eee;">
-  <div class="container py-5 h-100">
+
+  <div id="cont" class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-7 col-xl-9">
         <div class="card rounded-3">
           <div class="card-body p-4">
-
             <h4 class="text-center my-3 pb-3">Summer To Do App</h4>
 
             <form action="" method="POST"
@@ -156,12 +213,14 @@
             <div class="pagination_rounded">
               <ul>
                 {% for i in page_list %}
-                  <li>
-                      <a href="?page={{i}}">{{ i }}</a>
-                  </li>
-                {% endfor %} 
-              </ul>            
+                <li>
+                  <a href="?page={{i}}">{{ i }}</a>
+                </li>
+                {% endfor %}
+              </ul>
             </div>
+            <p><a class="text-center my-3 pb-3" href="https://www.flaticon.com/free-icons/list" title="list icons">List
+                icons created by Freepik - Flaticon</a></p>
           </div>
         </div>
       </div>

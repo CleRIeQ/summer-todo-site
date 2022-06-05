@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import  FormView, DeleteView, View
+from django.views.generic import FormView, DeleteView, View
 from .forms import CreateGoalForm
 from django.core.paginator import Paginator
 from .models import goal
@@ -7,9 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 
 
 class MainRedirectView(View):
-    
+
     def get(self, *args, **kwargs):
         return redirect('/my-goals/')
+
 
 class MyGoalsView(LoginRequiredMixin, FormView):
     model = goal
@@ -19,17 +20,17 @@ class MyGoalsView(LoginRequiredMixin, FormView):
     success_url = '/my-goals/'
     login_url = '/authentication/login/'
 
-
     def get_context_data(self, **kwargs):
-    
+
         context = super().get_context_data(**kwargs)
-        goals = goal.objects.filter(executor = self.request.user.id).order_by('-status')
+        goals = goal.objects.filter(
+            executor=self.request.user.id).order_by('-status')
         paginator = Paginator(goals, 5)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         page_list = []
         for i in range(page_obj.paginator.num_pages):
-            i+=1
+            i += 1
             page_list.append(i)
 
         context['user_goals'] = goals
@@ -37,12 +38,12 @@ class MyGoalsView(LoginRequiredMixin, FormView):
         context['page_list'] = page_list
         return context
 
-
     def form_valid(self, form):
         form = form.save(commit=False)
         form.executor = self.request.user
         form.save()
         return super(MyGoalsView, self).form_valid(form)
+
 
 class GoalsDeleteView(PermissionRequiredMixin, DeleteView):
     model = goal
@@ -58,7 +59,8 @@ class GoalsDeleteView(PermissionRequiredMixin, DeleteView):
         self.object = self.get_object()
         user_is_executor = self.object.executor == self.request.user
         return user_is_executor
-    
+
+
 class GoalsFinishView(View):
     model = goal
     template_name = "interface/goal_finish.html"
@@ -75,4 +77,3 @@ class GoalsFinishView(View):
             return redirect("/my-goals/")
         else:
             return redirect('/my-goals/')
-
